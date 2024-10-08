@@ -4,8 +4,7 @@
 - docker로 zookeeper, kafka cluser 사용해 봄
 - docker로 elastic search, Grafana 사용해 봄
 - 이때 Grafana와 elastic search매핑 과정에서 timestamp의 type이 Long이라 mapping이 안되는 문제가 발생했지만, timestamp에 format을 넣어서 문제 해결
-- ```
-  {
+- ```json
   "kafka-messages-v5" : {
     "mappings" : {
       "properties" : {
@@ -25,8 +24,15 @@
       }
     }
   }
-}
-```
+
+
 ### 보충해야 할 점
 - kafka 아키텍처에 대한 공부 필요 (producer -> kafka cluster -> consumer)
 - elastic search의 로그 수집 및 Grafana로 시각화 되는 과정에 대한 이해 필요
+
+### 명령어들
+- ```bash
+   curl -X GET "localhost:9200/kafka-messages-v5/_mapping?pretty"
+   curl -X GET "localhost:9200/kafka-messages-v5/_search?pretty"
+
+  
